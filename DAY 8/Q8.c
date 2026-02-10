@@ -11,4 +11,28 @@ Output:
 32
 Explanation: 2^5 = 2 * 2 * 2 * 2 * 2 = 32
 */
-
+#include<stdio.h>
+//Recursive function to compute a^b
+int power(int a, int b)
+{
+    //Base case
+    if(b==0)
+    {
+        return 1;
+    }
+    else
+    {
+        //Recursive case: 
+        return a*power(a, b-1);
+    }
+}
+int main()
+{
+    int a, b;
+    //Input two integers
+    printf("Enter two integers: ");
+    scanf("%d %d", &a, &b);
+    //Display result
+    printf("%d", power(a, b));
+    return 0;
+}
