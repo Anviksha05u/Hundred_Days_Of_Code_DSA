@@ -41,3 +41,64 @@ Output:
 Not a Symmetric Matrix
 */
 
+#include<stdio.h>
+int main()
+{
+    int m, n, i, j;
+    int flag=1;
+    //Read number of rows and columns of matrix
+    printf("Enter number of rows and columns of matrix: ");
+    scanf("%d %d", &m, &n);
+    int a[m][n], t[m][n];
+    //Read elements of matrix
+    printf("Enter elements of the matrix: ");
+    for(i=0; i<m; i++)
+    {
+        for(j=0; j<n; j++)
+        {
+            scanf("%d", &a[i][j]);
+        }
+    }
+    //Find transpose of matrix
+    for(i=0; i<m; i++)
+    {
+        for(j=0; j<n; j++)
+        {
+            t[j][i]=a[i][j];
+        }
+    }
+    //Display matrix
+    printf("\nMatrix: \n");
+    for(i=0; i<m; i++)
+    {
+        for(j=0; j<n; j++)
+        {
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
+    //Compare matrix and its transpose
+    for(i=0; i<m; i++)
+    {
+        for(j=0; j<n; j++)
+        {
+            if(a[i][j]!=t[i][j])
+            {
+                flag=0;
+                break;
+            }
+        }
+        if(flag==0)
+        break;
+    }
+    //Display result
+    if(flag==1)
+    {
+        printf("Symmetric Matrix");
+    }
+    else
+    {
+        printf("Not a Symmetric Matrix");
+    }
+    return 0;
+}
