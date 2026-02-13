@@ -33,3 +33,73 @@ Output:
 7 8 9
 */
 
+#include<stdio.h>
+int main()
+{
+    int r, c, i, j;
+    //Variables to define spiral boundries
+    int top, bottom, left, right;
+    //Read number of rows and columns in a matrix
+    printf("Enter number of rows and columns in a matrix matrix: ");
+    scanf("%d %d", &r, &c);
+    int a[r][c];
+    //Read elements of matrix
+    printf("Enter elements of the matrix: ");
+    for(i=0; i<r; i++)
+    {
+        for(j=0; j<c; j++)
+        {
+            scanf("%d", &a[i][j]);
+        }
+    }
+    //Display matrix
+    printf("\nMatrix: \n");
+    for(i=0; i<r; i++)
+    {
+        for(j=0; j<c; j++)
+        {
+            printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
+    //Initialize boundaries
+    top=0;
+    bottom=r-1;
+    left=0;
+    right=c-1;
+    //Spiral order
+    while(top <= bottom && left <= right)
+    {
+        //Top row
+        for(i = left; i <= right; i++)
+        {
+            printf("%d ", a[top][i]);
+        }
+        top++;
+        //Right column
+        for(i = top; i <= bottom; i++)
+        {
+            printf("%d ", a[i][right]);
+        }
+        right--;
+        //Bottom row
+        if(top <= bottom) 
+        {
+            for(i = right; i >= left; i--)
+            {
+                printf("%d ", a[bottom][i]);
+            }
+            bottom--;
+        }
+        //Left column
+        if(left <= right) 
+        {
+            for(i = bottom; i >= top; i--)
+            {
+                printf("%d ", a[i][left]);
+            }
+            left++;
+        }
+    }
+    return 0;
+}
