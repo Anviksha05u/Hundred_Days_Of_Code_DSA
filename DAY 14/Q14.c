@@ -16,3 +16,49 @@ Output:
 Identity Matrix
 */
 
+#include <stdio.h>
+int main() 
+{
+    int n, i, j;
+    int isIdentity = 1; //Assume it is identity first
+    //Input size of matrix
+    printf("Enter number of rows and columns: ");
+    scanf("%d", &n);
+    int matrix[n][n];
+    //Input matrix elements
+    printf("Enter elements: ");
+    for(i = 0; i < n; i++) 
+    {
+        for(j = 0; j < n; j++) 
+        {
+            scanf("%d", &matrix[i][j]);
+            //Check condition while reading
+            if(i == j) 
+            {
+                //Diagonal element must be 1
+                if(matrix[i][j] != 1) 
+                {
+                    isIdentity = 0;
+                }
+            }
+            else 
+            {
+                //Non-diagonal element must be 0
+                if(matrix[i][j] != 0) 
+                {
+                    isIdentity = 0;
+                }
+            }
+        }
+    }
+    //Display result
+    if(isIdentity)
+    {
+        printf("Identity Matrix\n");
+    }
+    else
+    {
+        printf("Not an Identity Matrix\n");
+    }
+    return 0;
+}
