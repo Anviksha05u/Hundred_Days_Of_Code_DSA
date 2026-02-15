@@ -17,3 +17,29 @@ Explanation:
 1 + 5 + 9 = 15
 */
 
+#include<stdio.h>
+int main()
+{
+    int m, n, sum=0;
+    //Input number of rows and columns
+    printf("Enter number of rows and columns: ");
+    scanf("%d %d", &m, &n);
+    int a[m][n];
+    //Input matrix elements
+    printf("Enter elements: ");
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            scanf("%d", &a[i][j]);
+        }
+    }
+    //sum of primary diagonal elements(i==j)
+    for(int i=0; i<m && i<n; i++)
+    {
+        sum=sum+a[i][i];
+    }
+    //Print result
+    printf("%d ", sum);
+    return 0;
+}
