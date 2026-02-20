@@ -14,3 +14,36 @@ Output:
 Explanation: A subarray is a continuous part of the array. For the input array 1 -1 2 -2 3 -3, the following subarrays have sum zero: [1, -1], [2, -2], [3, -3], [1, -1, 2, -2], [2, -2, 3, -3], and [1, -1, 2, -2, 3, -3]. Since there are 6 such subarrays, the output is 6.
 */
 
+#include <stdio.h>
+int main()
+{
+    int n;
+    //Read size of array
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+    int arr[n];
+    //Read array elements
+    printf("Enter elements: ");
+    for(int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+    int count = 0;
+    //Check all possible subarrays
+    for(int i = 0; i < n; i++)
+    {
+        int sum = 0; //Reset sum for each starting index
+        for(int j = i; j < n; j++)
+        {
+            sum += arr[j]; //Add current element to sum
+            //If sum becomes zero, increase count
+            if(sum == 0)
+            {
+                count++;
+            }
+        }
+    }
+    //Print result
+    printf("%d", count);
+    return 0;
+}
