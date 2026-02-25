@@ -40,9 +40,9 @@ struct Node* createNode(int data)
 struct Node* mergeSortedLists(struct Node* l1, struct Node* l2) 
 {
     //Dummy node helps simplify merging logic
-    struct Node dummy;
-    struct Node* tail = &dummy; //Tail pointer to build merged list
-    dummy.next = NULL; //Initially merged list is empty
+    struct Node temp;
+    struct Node* tail = &temp; //Tail pointer to build merged list
+    temp.next = NULL; //Initially merged list is empty
     //Compare nodes from both lists until one becomes NULL
     while (l1 != NULL && l2 != NULL) 
     {
@@ -63,7 +63,7 @@ struct Node* mergeSortedLists(struct Node* l1, struct Node* l2)
     //Attach remaining nodes (if any)
     tail->next = (l1 != NULL) ? l1 : l2;
     //Return head of merged list (skip dummy node)
-    return dummy.next;
+    return temp.next;
 }
 //Function to print the linked list
 void printList(struct Node* head) 
