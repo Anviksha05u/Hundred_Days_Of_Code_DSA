@@ -29,3 +29,94 @@ Input:
 Output:
 - Results of operations such as front, back, size, or the final state of the deque after all operations
 */
+
+#include <stdio.h>
+#define MAX 100
+int deque[MAX];
+int front = -1, rear = -1;
+int isEmpty()
+{
+    return front == -1;
+}
+int isFull()
+{
+    return (front == (rear + 1) % MAX);
+}
+void push_front(int x)
+{
+    if(isFull()) return;
+
+    if(isEmpty())
+        front = rear = 0;
+    else
+        front = (front - 1 + MAX) % MAX;
+    deque[front] = x;
+}
+void push_back(int x)
+{
+    if(isFull()) return;
+    if(isEmpty())
+        front = rear = 0;
+    else
+        rear = (rear + 1) % MAX;
+    deque[rear] = x;
+}
+void pop_front()
+{
+    if(isEmpty()) return;
+    if(front == rear)
+        front = rear = -1;
+    else
+        front = (front + 1) % MAX;
+}
+void pop_back()
+{
+    if(isEmpty()) return;
+    if(front == rear)
+        front = rear = -1;
+    else
+        rear = (rear - 1 + MAX) % MAX;
+}
+int getFront()
+{
+    if(isEmpty()) return -1;
+    return deque[front];
+}
+int getBack()
+{
+    if(isEmpty()) return -1;
+    return deque[rear];
+}
+int size()
+{
+    if(isEmpty()) return 0;
+    if(rear >= front)
+        return rear - front + 1;
+    else
+        return MAX - front + rear + 1;
+}
+void display()
+{
+    if(isEmpty()) return;
+    int i = front;
+    while(1)
+    {
+        printf("%d ", deque[i]);
+        if(i == rear) break;
+        i = (i + 1) % MAX;
+    }
+}
+int main()
+{
+    push_back(10);
+    push_back(20);
+    push_front(5);
+    push_back(30);
+    printf("Front: %d\n", getFront());
+    printf("Rear: %d\n", getBack());
+    printf("Size: %d\n", size());
+    pop_front();
+    pop_back();
+    display();
+    return 0;
+}
