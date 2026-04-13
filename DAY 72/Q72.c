@@ -11,3 +11,25 @@ Sample Output
 e
 */
 
+#include <stdio.h>
+int main()
+{
+    char s[1000];
+    int freq[26] = {0};
+    printf("Enter a string: ");
+    scanf("%s", s);
+    for (int i = 0; s[i] != '\0'; i++)
+    {
+        int index = s[i] - 'a';
+        //If already seen once → this is the first repeated
+        if (freq[index] == 1)
+        {
+            printf("%c\n", s[i]);
+            return 0;
+        }
+        freq[index]++;
+    }
+    //If no repeated character
+    printf("-1\n");
+    return 0;
+}
