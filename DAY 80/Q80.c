@@ -22,3 +22,50 @@ Explanation:
 The Floyd-Warshall algorithm works by considering each vertex as an intermediate point and updating the shortest paths between all pairs of vertices. For example, the shortest path from vertex 1 to vertex 3 is improved via vertex 2 with total cost 8. This process is repeated for all vertices, resulting in the final shortest distance matrix.
 */
 
+#include <stdio.h>
+#define INF 1000000000
+int main()
+{
+    int n;
+    scanf("%d", &n);
+    int dist[n][n];
+    //Input adjacency matrix
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            int x;
+            scanf("%d", &x);
+            if (x == -1)
+                dist[i][j] = INF;
+            else
+                dist[i][j] = x;
+        }
+    }
+    //Floyd-Warshall
+    for (int k = 0; k < n; k++)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (dist[i][k] + dist[k][j] < dist[i][j])
+                {
+                    dist[i][j] = dist[i][k] + dist[k][j];
+                }
+            }
+        }
+    }
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (dist[i][j] >= INF)
+                printf("-1 ");
+            else
+                printf("%d ", dist[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
