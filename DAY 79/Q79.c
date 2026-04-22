@@ -67,9 +67,7 @@ int main()
         //Update neighbors
         for (int v = 1; v <= n; v++)
         {
-            if (graph[u][v] && !visited[v] &&
-                dist[u] != INT_MAX &&
-                dist[u] + graph[u][v] < dist[v])
+            if (graph[u][v] && !visited[v] && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v])
             {
                 dist[v] = dist[u] + graph[u][v];
             }
