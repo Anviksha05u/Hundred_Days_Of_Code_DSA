@@ -21,3 +21,26 @@ Explanation:
 Binary Search is applied on the range 0 to n. At each step, the middle value is squared and compared with n. If mid * mid equals n, mid is the square root. If mid * mid is less than n, search continues in the right half; otherwise, in the left half. The final answer is the largest integer whose square does not exceed n.
 */
 
+#include <stdio.h>
+int main()
+{
+    int n;
+    scanf("%d", &n);
+    int low = 0, high = n;
+    int ans = 0;
+    while (low <= high)
+    {
+        long long mid = low + (high - low) / 2;
+        if (mid * mid <= n)
+        {
+            ans = mid;
+            low = mid + 1;
+        }
+        else
+        {
+            high = mid - 1;
+        }
+    }
+    printf("%d", ans);
+    return 0;
+}
